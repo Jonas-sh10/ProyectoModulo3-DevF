@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administrador</title>
+    <link rel="stylesheet" href="../css/index.css">
+</head>
+<body>
+    <header>
+        <div class="superior-izquierdo">
+            <div>
+                <img src="../imagenes/c1-institucion.png" alt="Fisi">
+            </div>
+            <h2>Sistema de Gestión de Actividades</h2>
+        </div>
+        <div class="superior-derecha">
+            <h2>Administrador</h2>
+            <div>
+                <img src="../imagenes/c1-Perfil1.png" alt="Perfil">
+            </div>
+        </div>
+    </header>
+    <main>  
+        <article>
+            <div class="listas">
+                <a href="registrar-alumnos.html">Registrar Alumnos <img src="../imagenes/Registrar-docente.png" alt="Docentes"></a> 
+            </div>
+            <div class="listas">
+                <a href="mostrar-alumnos.html">Mostrar Alumnos <img src="../imagenes/Registrar-alumno.png" alt="Alumnos"></a>
+            </div>
+            <div class="listas">
+                <a href="registrar-materia.html">Registrar Materia <img src="../imagenes/Registrar-curso.png" alt="Cursos"></a>
+            </div>
+            <div class="listas4">
+                <div>
+                    <label>Listas Materias</label><img src="../imagenes/Listar.png" alt="Lista">
+                </div>
+                <form action="">
+                    <label>Elige una opcion:</label>
+                    <select name="idioma" id="">
+                        <option value="fis" >Física</option>
+                        <option value="qui">Química</option>
+                        <option value="his" selected>Historia</option>
+                        <option value="geo">Geometría</option>
+                        <option value="alg">Álgebra</option>
+                    </select>
+                    <input type="submit">
+                </form>
+            </div>  
+        </article>
+    </main>
+    <script src="../index.js"></script>
+</body>
+</html>

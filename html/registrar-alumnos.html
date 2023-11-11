@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyecto Modulo 3</title>
+    <link rel="stylesheet" href="../css/registrar-alumnos.css">
+</head>
+<body>
+    <header>
+        <div class="superior-izquierdo">
+            <div>
+                <img src="../imagenes/c1-institucion.png" alt="Fisi">
+            </div>
+            <h2>Sistema de Gestión de Actividades</h2>
+        </div>
+        <div class="superior-derecha">
+            <h2>Administrador</h2>
+            <div>
+                <img src="../imagenes/c1-Perfil1.png" alt="Perfil">
+            </div>
+        </div>
+    </header>
+    <main>
+        <div>
+            <h2>Registro de Alumno</h2>
+        </div>
+        <div>
+            <form id="formulario">
+                <Label>Formulario de Datos</Label>
+                <div>
+                    <label>Nombre:</label>
+                    <input id="nombre" type="text" placeholder="Ingrese el nombre" required><br>
+                    <label>Apellidos:</label>
+                    <input id="apellido" type="text" placeholder="Ingrese el apellido" required><br>
+                    <label>Edad:</label>
+                    <input id="edad" type="number" placeholder="Ingrese la edad" required><br>
+                    <button id="enviar" type="submit">Enviar</button>
+                </div>
+            </form>
+            <a href="index.html"><button id="regresar" type="button">Regresar</button></a>
+        </div>
+    </main>
+    <script src="../index.js"></script>
+    
+    <script>
+        //Se crea el evento para Registrar Alumnos
+        const formularioHTML = document.getElementById('formulario');
+        formularioHTML.addEventListener('submit', (evento) => {
+            evento.preventDefault();
+            console.log('Me diste click...');
+            let inputNombre = document.getElementById('nombre').value;
+            inputNombre = inputNombre.toLowerCase();
+            let inputApellido = document.getElementById('apellido').value;
+            inputApellido = inputApellido.toLowerCase();
+            let inputEdad = document.getElementById('edad').value;
+            const alumno = new Alumno(inputNombre, inputApellido, inputEdad, []);
+            lista.altaAlumnos(alumno);
+            console.log('Alumno registrado...');
+            formularioHTML.reset(); // Limpiar el formulario después de enviar
+        });
+    </script>
+</body>
+</html>

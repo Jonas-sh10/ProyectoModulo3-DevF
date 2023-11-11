@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administrador</title>
+    <link rel="stylesheet" href="../css/mostrar-alumnos.css">
+</head>
+<body>
+    <header>
+        <div class="superior-izquierdo">
+            <div>
+                <img src="../imagenes/c1-institucion.png" alt="Fisi">
+            </div>
+            <h2>Sistema de Gestión de Actividades</h2>
+        </div>
+        <div class="superior-derecha">
+            <h2>Administrador</h2>
+            <div>
+                <img src="../imagenes/c1-Perfil1.png" alt="Perfil">
+            </div>
+        </div>
+    </header>
+    <main>
+        <h2>Mostrar Alumnos</h2>
+        <div>
+            <button id="mostrarDato">Mostrar Datos</button>
+            <label>Buscar Alumno:</label>
+            <input type="text" id="datoIntroducido" placeholder="Ingrese el nombre o apellido" required>
+            <button id="buscarAlumno">Buscar Alumno</button>
+        </div>
+        <div>
+            <table id="tablaAlumnos">
+                <thead>
+                    <tr>
+                        <th>Número De Lista</th>
+                        <th>Nombre</th>
+                        <th>Apellidos</th>
+                        <th>Edad</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Aquí se agregarán las filas dinámicamente -->
+                </tbody>
+            </table>
+        </div>
+    </main>
+    <script src="../index.js"></script>
+    <script>
+        //Se crea el evento para Mostrar Datos en la Tabla
+        const botonMostrarDatos = document.getElementById('mostrarDato');
+        botonMostrarDatos.addEventListener('click', (evento) => {
+            evento.preventDefault();
+            console.log('Se dio click en Mostrar Datos...');
+            lista.mostrarAlumnos();
+        });
+
+        // //Se crea el evento para Buscar un Dato y mostrarlo en la Tabla
+        const botonBuscarAlumno = document.getElementById('buscarAlumno');
+        botonBuscarAlumno.addEventListener('click', (evento) => {
+            evento.preventDefault();
+            console.log('Se dio click en Buscar Alumno...');
+            let inputNombre = document.getElementById('datoIntroducido').value;
+            inputNombre = inputNombre.toLowerCase();
+            lista.mostrarAlumnoPorNombre(inputNombre);
+        });
+    </script>
+</body>
+</html>
