@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Administrador</title>
+    <title>Proyecto Modulo 3</title>
     <link rel="stylesheet" href="../css/registrar-materia.css">
 </head>
 <body>
@@ -21,9 +21,111 @@
             </div>
         </div>
     </header>
-    <main>  
+    <main>
+        <section>
+            <h2>Registrar Matteria</h2>
+            <form id="formularioMateria" method="post">
+                <label>Crear Materia:</label>
+                <input type="text" id="materia" required>
+                <button type="submit">Crear</button>
+            </form>
+        </section>
+        <section>
+            <h2>Registrar a Alumno en una Materia</h2>
+        <div>
+            <form id="formularioIngresarAlumnoMateria" method="post">
+                <div>
+                    <label>Buscar Alumno:</label>
+                    <input type="text" id="datoAlumnoEnMateria" placeholder="Ingrese el apellido" required>
+                    <button id="buscarAlumnoPorApellido" type="button">Buscar Alumno</button>
+                </div>
+                <div>
+                    <table id="tablaAlumnosParaMateria">
+                        <thead>
+                            <tr>
+                                <th>Orden De Lista</th>
+                                <th>Nombre</th>
+                                <th>Apellidos</th>
+                                <th>Edad</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Aquí se agregarán las filas dinámicamente -->
+                        </tbody>
+                    </table>
+                </div>
+                <label>Elige una materia:</label>
+                <select name="variasMaterias" id="materiaSelect">
+                    <!-- Las opciones se agregarán dinámicamente aquí -->
+                </select>
+                <label>Calificacion:</label>
+                <input type="number" id="calificacionMateria" required>
+                <button type="submit">Registrar</button>
+            </form>
+            <a href="index.html"><button id="regresar" type="button">Regresar</button></a>  
+        </div>
+        </section>
+
         
     </main>
     <script src="../index.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Llamar a la función para llenar el select al cargar la página
+            listaMateria.actualizarOpcionesMateria();
+        });
+
+        const botonFormularioMateria = document.getElementById('formularioMateria');
+        botonFormularioMateria.addEventListener('submit', (evento) =>{
+            evento.preventDefault();
+            console.log('Me diste click...');
+
+            let inputMateria = document.getElementById('materia').value;
+            inputMateria = inputMateria.toLowerCase();
+            console.log(inputMateria);
+
+            const listaMateria = new ListaEnlazadaMaterias(inputMateria);
+            ListaEnlazadaMaterias.materiasArray.push(listaMateria);
+            localStorage.setItem('listaMaterias', JSON.stringify(ListaEnlazadaMaterias.materiasArray));
+
+            listaMateria.actualizarOpcionesMateria();
+            
+            console.log(ListaEnlazadaMaterias.materiasArray);
+            botonFormularioMateria.reset();
+        });
+
+        // //Se crea el evento para Buscar un Dato y mostrarlo en la Tabla
+        const botonBuscarAlumnoPorApellido = document.getElementById('buscarAlumnoPorApellido');
+        botonBuscarAlumnoPorApellido.addEventListener('click', (evento) => {
+            evento.preventDefault();
+            console.log('Se dio click en Buscar Alumno...');
+            let inputDatoAlumnoEnMateria1 = document.getElementById('datoAlumnoEnMateria').value;
+            inputDatoAlumnoEnMateria1= inputDatoAlumnoEnMateria1.toLowerCase();
+            listaMateria.buscarAlumnoParaRegistrarEnMateria(inputDatoAlumnoEnMateria1);
+        });
+
+        // //Se crea el evento para Ingresar un Alumno a la Lista Enlazada Materia(Se tiene que gregar una materia)
+        const botonformularioIngresarAlumnoMateria = document.getElementById('formularioIngresarAlumnoMateria');
+        botonformularioIngresarAlumnoMateria.addEventListener('submit', (evento) => {
+            evento.preventDefault();
+            console.log('Se dio click a Inscribir Alumno en Materia...');
+            
+            let inputDatoAlumnoEnMateria2 = document.getElementById('datoAlumnoEnMateria').value;
+            inputDatoAlumnoEnMateria2= inputDatoAlumnoEnMateria2.toLowerCase();
+            
+            let inputMateria2 = document.getElementById('materiaSelect').value;
+            inputMateria2 = inputMateria2.toLowerCase();
+
+            let inputCalificacionMateria = document.getElementById('calificacionMateria').value;
+            inputCalificacionMateria = inputCalificacionMateria.toLowerCase();
+
+            console.log(inputDatoAlumnoEnMateria2);
+            console.log(inputMateria2 );
+            console.log(inputCalificacionMateria);
+
+            listaMateria.mandarFormularioParaRegistrarAlumnoEnMateria(inputDatoAlumnoEnMateria2, inputMateria2, inputCalificacionMateria);
+            botonformularioIngresarAlumnoMateria.reset();
+        });
+    </script>
 </body>
 </html>
